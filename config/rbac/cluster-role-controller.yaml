@@ -23,6 +23,26 @@ rules:
   - list
   - watch
 - apiGroups:
+  - s3tables.services.k8s.aws
+  resources:
+  - tablebuckets
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - s3tables.services.k8s.aws
+  resources:
+  - tablebuckets/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
   - services.k8s.aws
   resources:
   - fieldexports

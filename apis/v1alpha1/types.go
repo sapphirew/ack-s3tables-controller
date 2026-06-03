@@ -27,3 +27,85 @@ var (
 	_ = &aws.JSONValue{}
 	_ = ackv1alpha1.AWSAccountID("")
 )
+
+// Configuration specifying how data should be encrypted. This structure defines
+// the encryption algorithm and optional KMS key to be used for server-side
+// encryption.
+type EncryptionConfiguration struct {
+	KMSKeyARN    *string `json:"kmsKeyARN,omitempty"`
+	SSEAlgorithm *string `json:"sseAlgorithm,omitempty"`
+}
+
+// Defines a single partition field in an Iceberg partition specification.
+type IcebergPartitionField struct {
+	Name      *string `json:"name,omitempty"`
+	Transform *string `json:"transform,omitempty"`
+}
+
+// Defines a single sort field in an Iceberg sort order specification.
+type IcebergSortField struct {
+	Transform *string `json:"transform,omitempty"`
+}
+
+// Contains information about the most recent successful replication update
+// to a destination.
+type LastSuccessfulReplicatedUpdate struct {
+	Timestamp *metav1.Time `json:"timestamp,omitempty"`
+}
+
+// Contains details about a namespace.
+type NamespaceSummary struct {
+	CreatedAt      *metav1.Time `json:"createdAt,omitempty"`
+	CreatedBy      *string      `json:"createdBy,omitempty"`
+	OwnerAccountID *string      `json:"ownerAccountID,omitempty"`
+	TableBucketID  *string      `json:"tableBucketID,omitempty"`
+}
+
+// Specifies a destination table bucket for replication.
+type ReplicationDestination struct {
+	DestinationTableBucketARN *string `json:"destinationTableBucketARN,omitempty"`
+}
+
+// Contains status information for a replication destination, including the
+// current replication state, last successful update, and any error messages.
+type ReplicationDestinationStatusModel struct {
+	DestinationTableBucketARN *string `json:"destinationTableBucketARN,omitempty"`
+	FailureMessage            *string `json:"failureMessage,omitempty"`
+}
+
+// Contains details about a schema field.
+type SchemaField struct {
+	Name *string `json:"name,omitempty"`
+	Type *string `json:"type_,omitempty"`
+}
+
+// The configuration details for the storage class of tables or table buckets.
+// This allows you to optimize storage costs by selecting the appropriate storage
+// class based on your access patterns and performance requirements.
+type StorageClassConfiguration struct {
+	StorageClass *string `json:"storageClass,omitempty"`
+}
+
+// Contains details about a table bucket.
+type TableBucketSummary struct {
+	ARN            *string      `json:"arn,omitempty"`
+	CreatedAt      *metav1.Time `json:"createdAt,omitempty"`
+	Name           *string      `json:"name,omitempty"`
+	OwnerAccountID *string      `json:"ownerAccountID,omitempty"`
+	TableBucketID  *string      `json:"tableBucketID,omitempty"`
+	Type           *string      `json:"type_,omitempty"`
+}
+
+// Details about the status of a maintenance job.
+type TableMaintenanceJobStatusValue struct {
+	FailureMessage   *string      `json:"failureMessage,omitempty"`
+	LastRunTimestamp *metav1.Time `json:"lastRunTimestamp,omitempty"`
+}
+
+// Contains details about a table.
+type TableSummary struct {
+	CreatedAt        *metav1.Time `json:"createdAt,omitempty"`
+	ManagedByService *string      `json:"managedByService,omitempty"`
+	ModifiedAt       *metav1.Time `json:"modifiedAt,omitempty"`
+	TableBucketID    *string      `json:"tableBucketID,omitempty"`
+}

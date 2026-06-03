@@ -2,4 +2,41 @@ ignore:
   resource_names:
     - Namespace
     - Table
-    - TableBucket
+
+resources:
+  TableBucket:
+    fields:
+      Name:
+        is_primary_key: true
+        is_immutable: true
+      OwnerAccountID:
+        is_read_only: true
+        from:
+          operation: GetTableBucket
+          path: OwnerAccountId
+      CreatedAt:
+        is_read_only: true
+        from:
+          operation: GetTableBucket
+          path: CreatedAt
+      TableBucketID:
+        is_read_only: true
+        from:
+          operation: GetTableBucket
+          path: TableBucketId
+      Type:
+        is_read_only: true
+        from:
+          operation: GetTableBucket
+          path: Type
+    exceptions:
+      errors:
+        404:
+          code: NotFoundException
+    hooks:
+      delta_pre_compare:
+        code: customPreCompare(a, b)
+      sdk_read_one_post_set_output:
+        template_path: hooks/table_bucket/sdk_read_one_post_set_output.go.tpl
+    update_operation:
+      custom_method_name: customUpdateTableBucket
