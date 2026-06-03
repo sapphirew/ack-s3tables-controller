@@ -1,0 +1,9 @@
+apiVersion: s3tables.services.k8s.aws/v1alpha1
+kind: TableBucket
+metadata:
+  name: $TABLE_BUCKET_NAME
+spec:
+  name: $TABLE_BUCKET_NAME
+  tags:
+    environment: test
+    team: ack

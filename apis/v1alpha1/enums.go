@@ -75,6 +75,12 @@ const (
 	SSEAlgorithm_aws_kms SSEAlgorithm = "aws:kms"
 )
 
+type SchemaV2FieldType string
+
+const (
+	SchemaV2FieldType_struct SchemaV2FieldType = "struct"
+)
+
 type StorageClass string
 
 const (

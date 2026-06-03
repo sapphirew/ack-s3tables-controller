@@ -2,4 +2,48 @@ ignore:
   resource_names:
     - Namespace
     - Table
-    - TableBucket
+
+resources:
+  TableBucket:
+    fields:
+      Name:
+        is_primary_key: true
+        is_immutable: true
+      CreatedAt:
+        is_read_only: true
+        from:
+          operation: GetTableBucket
+          path: CreatedAt
+      Type:
+        is_read_only: true
+        from:
+          operation: GetTableBucket
+          path: Type
+        go_tag: json:"type,omitempty"
+      # GetTableBucket does not return encryption/storage class config; S3 Tables
+      # applies server-side defaults. Late initialize them so the defaults are
+      # written back to the spec once and drift can still be detected if the
+      # values are later changed out of band.
+      EncryptionConfiguration:
+        late_initialize:
+          skip_incomplete_check: {}
+      # Cross-resource reference to a KMS Key for SSE-KMS encryption.
+      EncryptionConfiguration.KMSKeyARN:
+        references:
+          resource: Key
+          service_name: kms
+          path: Status.ACKResourceMetadata.ARN
+      StorageClassConfiguration:
+        late_initialize:
+          skip_incomplete_check: {}
+    exceptions:
+      errors:
+        404:
+          code: NotFoundException
+      terminal_codes:
+        - BadRequestException
+    hooks:
+      sdk_read_one_post_set_output:
+        template_path: hooks/table_bucket/sdk_read_one_post_set_output.go.tpl
+    update_operation:
+      custom_method_name: customUpdateTableBucket
