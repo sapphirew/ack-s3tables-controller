@@ -4,7 +4,7 @@ go 1.25.0
 
 require (
 	github.com/aws-controllers-k8s/kms-controller v1.3.0
-	github.com/aws-controllers-k8s/runtime v0.59.2-0.20260603224255-14be98880374
+	github.com/aws-controllers-k8s/runtime v0.59.1
 	github.com/aws/aws-sdk-go v1.55.8
 	github.com/aws/aws-sdk-go-v2 v1.41.11
 	github.com/aws/aws-sdk-go-v2/service/s3tables v1.16.4
