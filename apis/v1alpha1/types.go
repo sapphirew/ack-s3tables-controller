@@ -59,6 +59,8 @@ type LastSuccessfulReplicatedUpdate struct {
 type NamespaceSummary struct {
 	CreatedAt      *metav1.Time `json:"createdAt,omitempty"`
 	CreatedBy      *string      `json:"createdBy,omitempty"`
+	Namespace      []*string    `json:"namespace,omitempty"`
+	NamespaceID    *string      `json:"namespaceID,omitempty"`
 	OwnerAccountID *string      `json:"ownerAccountID,omitempty"`
 	TableBucketID  *string      `json:"tableBucketID,omitempty"`
 }
@@ -79,14 +81,6 @@ type ReplicationDestinationStatusModel struct {
 type SchemaField struct {
 	Name *string `json:"name,omitempty"`
 	Type *string `json:"type_,omitempty"`
-}
-
-// Contains details about a schema field in the V2 format. This field format
-// supports nested and complex data types such as struct, list, and map, in
-// addition to primitive types.
-type SchemaV2Field struct {
-	Doc  *string `json:"doc,omitempty"`
-	Name *string `json:"name,omitempty"`
 }
 
 // The configuration details for the storage class of tables or table buckets.
@@ -117,5 +111,7 @@ type TableSummary struct {
 	CreatedAt        *metav1.Time `json:"createdAt,omitempty"`
 	ManagedByService *string      `json:"managedByService,omitempty"`
 	ModifiedAt       *metav1.Time `json:"modifiedAt,omitempty"`
+	Namespace        []*string    `json:"namespace,omitempty"`
+	NamespaceID      *string      `json:"namespaceID,omitempty"`
 	TableBucketID    *string      `json:"tableBucketID,omitempty"`
 }
