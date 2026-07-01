@@ -574,6 +574,11 @@ func (in *SchemaField) DeepCopyInto(out *SchemaField) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.Required != nil {
+		in, out := &in.Required, &out.Required
+		*out = new(bool)
+		**out = **in
+	}
 	if in.Type != nil {
 		in, out := &in.Type, &out.Type
 		*out = new(string)

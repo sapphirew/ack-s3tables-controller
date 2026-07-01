@@ -128,6 +128,8 @@ spec:
                                   type: integer
                                 name:
                                   type: string
+                                required:
+                                  type: boolean
                                 type:
                                   type: string
                               type: object

@@ -360,6 +360,9 @@ func (rm *resourceManager) newCreateRequestPayload(
 						if f2f0f2f0iter.Name != nil {
 							f2f0f2f0elem.Name = f2f0f2f0iter.Name
 						}
+						if f2f0f2f0iter.Required != nil {
+							f2f0f2f0elem.Required = *f2f0f2f0iter.Required
+						}
 						if f2f0f2f0iter.Type != nil {
 							f2f0f2f0elem.Type = f2f0f2f0iter.Type
 						}

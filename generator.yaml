@@ -11,10 +11,6 @@ ignore:
     # scalar (modeled as a reference to the Namespace resource). Drop the list
     # output and bridge the scalar back in the read hook.
     - GetTableOutput.Namespace
-    # SchemaField.Required is a non-pointer bool in the SDK, which ACK cannot
-    # round-trip cleanly (generates *bool, breaking the setter assignment).
-    # Drop it; S3 Tables defaults required=false and assigns field IDs itself.
-    - SchemaField.Required
 
 resources:
   Table:

@@ -132,9 +132,10 @@ type ReplicationInformation struct {
 
 // Contains details about a schema field.
 type SchemaField struct {
-	ID   *int64  `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Type *string `json:"type,omitempty"`
+	ID       *int64  `json:"id,omitempty"`
+	Name     *string `json:"name,omitempty"`
+	Required *bool   `json:"required,omitempty"`
+	Type     *string `json:"type,omitempty"`
 }
 
 // The configuration details for the storage class of tables or table buckets.
